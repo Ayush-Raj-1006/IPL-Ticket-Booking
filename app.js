@@ -207,3 +207,70 @@ if (bookingForm) {
     });
 
 }
+
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", function () {
+        mainNav.classList.toggle("active");
+
+        const isOpen = mainNav.classList.contains("active");
+        menuToggle.setAttribute("aria-expanded", isOpen);
+        menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    mainNav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            mainNav.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.textContent = "☰";
+        });
+    });
+}
+
+const teamFilter = document.getElementById("teamFilter");
+const matchContainer = document.getElementById("matchContainer");
+const noMatches = document.getElementById("noMatches");
+const gridView = document.getElementById("gridView");
+const listView = document.getElementById("listView");
+
+function filterMatches() {
+    if (!teamFilter || !matchContainer) {
+        return;
+    }
+
+    const selectedTeam = teamFilter.value;
+    const matchCards = matchContainer.querySelectorAll(".match-card");
+    let visibleCount = 0;
+
+    matchCards.forEach(function (card) {
+        const teams = card.dataset.team.split(" ");
+        const showCard = selectedTeam === "all" ||
+            teams.includes(selectedTeam);
+
+        card.hidden = !showCard;
+
+        if (showCard) {
+            visibleCount++;
+        }
+    });
+
+    if (noMatches) {
+        noMatches.hidden = visibleCount !== 0;
+    }
+}
+
+if (teamFilter) {
+    teamFilter.addEventListener("change", filterMatches);
+}
+
+if (gridView && listView && matchContainer) {
+    gridView.addEventListener("click", function () {
+        matchContainer.classList.remove("list-view");
+    });
+
+    listView.addEventListener("click", function () {
+        matchContainer.classList.add("list-view");
+    });
+}
