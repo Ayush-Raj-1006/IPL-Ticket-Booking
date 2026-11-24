@@ -1,4 +1,5 @@
 
+
 :root {
     --primary: #071952;
     --secondary: #0B2F6A;
@@ -191,6 +192,7 @@ td a:hover {
     background-color: var(--white);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 110px;
 }
 
 #booking h2 {
@@ -222,6 +224,68 @@ input, select {
 input:focus, select:focus {
     outline: none;
     border-color: var(--secondary);
+}
+
+fieldset {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+fieldset input[type="radio"],
+fieldset input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+fieldset label {
+    margin-right: 10px;
+}
+
+fieldset p {
+    margin-bottom: 10px;
+}
+
+.booking-summary {
+    background: linear-gradient(135deg, #071952, #174EA6);
+    color: var(--white);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 0;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.booking-summary h2 {
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.booking-summary p {
+    font-size: 16px;
+    margin: 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.booking-summary span {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.booking-summary h3 {
+    color: var(--accent);
+    text-align: center;
+    font-size: 23px;
+    margin-top: 20px;
+}
+
+.booking-summary hr {
+    border: 1px solid var(--accent);
 }
 
 aside {
@@ -277,7 +341,31 @@ footer {
     margin-top: 30px;
 }
 
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    max-width: 350px;
+    background-color: var(--primary);
+    color: var(--white);
+    text-align: center;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 15px 20px;
+    position: fixed;
+    z-index: 2000;
+    bottom: 30px;
+    right: 30px;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+#toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
 @media screen and (max-width: 768px) {
+
     header {
         flex-direction: column;
         gap: 10px;
@@ -302,6 +390,10 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .booking-summary {
+        max-width: 100%;
+    }
+
     section {
         padding: 40px 5%;
     }
@@ -309,25 +401,11 @@ footer {
     table {
         min-width: 700px;
     }
-}
-#toast {
-    visibility: hidden;
-    min-width: 250px;
-    background-color: #071952;
-    color: white;
-    text-align: center;
-    border: 2px solid #F5C542;
-    border-radius: 8px;
-    padding: 15px 20px;
-    position: fixed;
-    z-index: 1000;
-    bottom: 30px;
-    right: 30px;
-    opacity: 0;
-    transition: opacity 0.3s, visibility 0.3s;
-}
 
-#toast.show {
-    visibility: visible;
-    opacity: 1;
+    #toast {
+        right: 15px;
+        left: 15px;
+        bottom: 15px;
+        max-width: none;
+    }
 }

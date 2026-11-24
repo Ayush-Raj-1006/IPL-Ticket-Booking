@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +16,7 @@
         <h1>IPL 2026 Ticket Booking</h1>
         <nav>
             <a href="#matches">Matches</a> |
-            <a href="booking.html">Book Ticket</a>
+            <a href="booking.html#booking">Book Ticket</a> |
             <a href="#mybookings">My Bookings</a> |
             <a href="#guidelines">Guidelines</a>
         </nav>
@@ -158,7 +159,7 @@
     <section id="booking">
         <h2>Book Your IPL Tickets</h2>
 
-        <form action="#" method="post">
+        <form id="bookingForm" action="#" method="post">
 
             <label for="match">Select Match:</label>
             <select id="match" name="match" required>
@@ -174,16 +175,16 @@
             <label for="stand">Stand Category:</label>
             <select id="stand" name="stand" required>
                 <option value="">-- Select Category --</option>
-                <option value="General">General</option>
-                <option value="Premium">Premium</option>
-                <option value="VIP">VIP</option>
+                <option value="General" data-price="500">General</option>
+                <option value="Premium" data-price="1500">Premium</option>
+                <option value="VIP" data-price="3000">VIP</option>
             </select>
 
             <br><br>
 
-            <label for="quantity">Number of Tickets:</label>
-            <input type="number" id="quantity" name="quantity"
-                   min="1" max="10" required>
+            <label for="tickets">Number of Tickets:</label>
+            <input type="number" id="tickets" name="quantity"
+                   min="1" max="10" value="1" required>
 
             <br><br>
 
@@ -211,13 +212,34 @@
 
         </form>
 
-        <aside>
+        <aside class="booking-summary" id="bookingSummary">
             <h3>Booking Summary</h3>
-            <p>Selected Match: Not Selected</p>
-            <p>Stand Category: Not Selected</p>
-            <p>Ticket Price: ₹0</p>
-            <p>Quantity: 0</p>
-            <p>Total Amount: ₹0</p>
+
+            <p>
+                <strong>Selected Match:</strong>
+                <span id="summaryMatch">Not Selected</span>
+            </p>
+
+            <p>
+                <strong>Stand Category:</strong>
+                <span id="summaryStand">Not Selected</span>
+            </p>
+
+            <p>
+                <strong>Number of Tickets:</strong>
+                <span id="summaryTickets">1</span>
+            </p>
+
+            <p>
+                <strong>Price Per Ticket:</strong>
+                ₹<span id="summaryPrice">0</span>
+            </p>
+
+            <hr>
+
+            <h3>
+                Total Amount: ₹<span id="summaryTotal">0</span>
+            </h3>
         </aside>
     </section>
 
